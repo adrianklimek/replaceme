@@ -1,0 +1,23 @@
+{
+  "name": "replaceme",
+  "description": "Text rotating JavaScript component",
+  "main": "dist/replaceme.js",
+  "authors": [
+    "Adrian Klimek"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "text",
+    "animation"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+}
