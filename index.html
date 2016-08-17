@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta http-equiv="cleartype" content="on">
+        <title>ReplaceMe.js - Text Rotating Component in Pure JavaScript.</title>
+        <meta name="description" content="Text Rotating Component in Pure JavaScript.">
+        <meta name="keywords" content="javascript, plugin, text, animation">
+        <meta name="authors" content="Adrian Klimek">
+        <meta name="theme-color" content="#ca2c67">
+
+        <style>html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{font-size:100%;margin:0;padding:0;vertical-align:baseline;border:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,main,nav,section,summary{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-spacing:0;border-collapse:collapse}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}a{background-color:transparent}*,:before,:after{-webkit-box-sizing:border-box;box-sizing:border-box}a:active,a:hover{outline:0}small{font-size:75%}[hidden],template{display:none}audio:not([controls]){display:none;height:0}abbr[title]{border-bottom:1px dotted}img{border:0}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font:inherit;color:inherit}textarea{overflow:auto}input[type='search']::-webkit-search-cancel-button,input[type='search']::-webkit-search-decoration{-webkit-appearance:none}input[type='search']{-webkit-appearance:textfield}input[type='checkbox'],input[type='radio']{padding:0}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}</style>
+        <style>
+            html {
+                font-size: 62.5%;
+            }
+            body {
+                font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
+                font-size: 1.3em;
+                font-weight: 200;
+                line-height: 1.6;
+
+                color: #2c2c2c;
+            }
+            b,
+            strong {
+                font-weight: 400;
+            }
+            h1,
+            h2,
+            h3 {
+                font-weight: 200;
+
+                margin-top: 0;
+                margin-bottom: 16px;
+            }
+            h1 {
+                font-size: 3.6rem;
+            }
+            h2 {
+                font-size: 2.4rem;
+                font-weight: 400;
+            }
+            h3 {
+                font-size: 1.6rem;
+                font-weight: 400;
+            }
+            a {
+                position: relative;
+
+                transition: all .15s ease-in-out;
+                text-decoration: none;
+
+                color: inherit;
+            }
+            a:not([class]):after,
+            .regular-link:after,
+            a:not([class]):before,
+            .regular-link:before {
+                position: absolute;
+                bottom: -3px;
+
+                height: 1px;
+
+                content: ' ';
+            }
+            a:not([class]):after,
+            .regular-link:after {
+                left: 0;
+
+                width: 100%;
+
+                opacity: .1;
+                background-color: #2c2c2c;
+            }
+            a:not([class]):before,
+            .regular-link:before {
+                left: 50%;
+
+                width: 0;
+
+                transition: all .15s ease-in-out;
+
+                opacity: 1;
+                background-color: #e495b3;
+            }
+            a:not([class]):hover:before,
+            .regular-link:hover:before {
+                left: 0;
+
+                width: 100%;
+            }
+            a:not([class]):hover,
+            .regular-link:hover {
+                color: #ca2c67;
+            }
+            pre {
+                margin-bottom: 15px;
+            }
+            .button {
+                font-size: 1.2rem;
+                font-weight: 400;
+                line-height: 36px;
+
+                display: inline-block;
+
+                padding: 0 24px;
+
+                cursor: pointer;
+                transition: all .15s ease-in-out;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+
+                color: #ca2c67;
+                border: solid 1px #ca2c67;
+                border-radius: 18px;
+            }
+            .button:hover {
+                color: #ffffff;
+                background-color: #ca2c67;
+            }
+            .button-wrapper {
+                display: inline-block;
+
+                margin-top: 15px;
+
+                text-align: center;
+            }
+            .hljs {
+                padding: 20px !important;
+            }
+            .replace-me {
+                cursor: pointer;
+            }
+            .container {
+                max-width: 960px;
+                margin: 0 auto;
+            }
+            .section-content {
+                margin: 15px auto 0;
+                padding: 15px 30px;
+            }
+            #header {
+                position: relative;
+
+                padding: 60px 30px;
+            }
+            #header:after {
+                position: absolute;
+                bottom: 0;
+                left: 30px;
+
+                width: 128px;
+                height: 1px;
+
+                content: ' ';
+
+                opacity: .1;
+                background: #2c2c2c;
+            }
+            .image-logo {
+                margin-bottom: 16px;
+            }
+            #usage-content p,
+            #methods-content p {
+                margin-bottom: 15px;
+            }
+            #footer {
+                margin: 0 auto;
+                padding: 30px;
+
+                text-align: center;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/monokai-sublime.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
+        <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+    </head>
+    <body>
+        <main class="container">
+
+            <header id="header" class="section-content">
+                <a href="https://adrianklimek.github.io/ReplaceMe/" class="logo-link"><img src="images/logo.png" class="image-logo animated fadeInDown" alt="Text Rotating Component in Pure JavaScript." width="64" height="64"></a>
+                <h1 class="animated fadeIn">ReplaceMe.js is a <strong class="replace-me">lightweight<span style="display:none;">, simple, customizable</span></span></strong> text rotating component written in pure JavaScript.</h1>
+                <div class="button-wrapper">
+                    <a href="https://raw.githubusercontent.com/adrianklimek/ReplaceMe/master/dist/replaceme.min.js" class="button">Download</a>
+                    <p><small>v1.0.0 ~ 2.6kb minified</small></p>
+                </div>
+            </header>
+
+            <section id="about-content" class="section-content">
+                <h2>About</h2>
+                <p><a href="https://github.com/adrianklimek/ReplaceMe">ReplaceMe.js</a> is a lightweight JavaScript component for text rotating. No dependency needed, but it also works well with jQuery.</p>
+            </section>
+
+            <section id="usage-content" class="section-content">
+                <h2>Usage</h2>
+
+                <h3>1. Add <a href="https://daneden.github.io/animate.css/">animate.css</a> or other animations library to head of the document</h3>
+                <pre><code class="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css&quot;&gt;</code></pre>
+
+                <h3>2. Set up html</h3>
+                <pre><code class="html">&lt;p&gt;I am &lt;span class=&quot;replace-me&quot;&gt;Designer,Developer,Photographer&lt;/span&gt;&lt;/p&gt;</code></pre>
+                <p>Also, you can put other values in hidden span to show only first value in case something goes wrong or javascript is disabled.</p>
+                <pre><code class="html">&lt;p&gt;I am &lt;span class=&quot;replace-me&quot;&gt;Designer&lt;span style=&quot;display:none&quot;&gt;,Developer,Photographer&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+                <h3>3. Add <a href="https://github.com/adrianklimek/ReplaceMe/">replaceme.js</a> at the bottom of the document body and set up javascript</h3>
+                <pre><code class="html">&lt;script src=&quot;replaceme.min.js&quot;&gt;&lt;/script&gt;&lt;script&gt;
+    var replace = new ReplaceMe();
+&lt;/script&gt;</code></pre>
+                <p>If you want to declare custom options: </p>
+                <pre><code class="html">&lt;script src=&quot;replaceme.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+var replace = new ReplaceMe({
+    element: document.querySelector('.replace-me'),     // DOM element or query selector 
+    animation: 'animated fadeIn',                       // Animation class or classes
+    speed: 2000,                                        // Delay between each phrase in miliseconds
+    separator: ',',                                     // Phrases separator
+    hoverStop: false,                                   // Stop rotator on phrase hover
+    clickChange: false,                                 // Chnage phrase on click
+    loopCount: 'infinite',                              // Loop Count - 'infinite' or number
+    autoRun: true,                                      // Run rotator automatically
+    onInit: false,                                      // Function
+    onChange: false,                                    // Function
+    onComplete: false                                   // Function
+});
+&lt;/script&gt;</code></pre>
+                <p>Also you can use jQuery: </p>
+                <pre><code class="html">&lt;script src=&quot;replaceme.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var replace = $('.replace-me').ReplaceMe();
+&lt;/script&gt;</code></pre>
+            </section>
+
+            <section id="methods-content" class="section-content">
+                <h2>Methods</h2>
+                <p>There are four methods to use:</p>
+                <pre><code class="js">var replace = new ReplaceMe();
+replace.start(); // use this to start or unpause
+replace.stop(); // use this to stop
+replace.pause(); // use this to pause
+replace.change(); // use this to change phrase</code></pre>
+            </section>
+
+            <section id="browser-content" class="section-content">
+                <h2>Browser Support</h2>
+                <p>All modern browsers and IE10+ due to css animations. In IE8 & IE9 rotator works but without animations.</p>
+            </section>
+
+            <section id="usage-content" class="section-content">
+                <h2>License</h2>
+                <p><a href="https://github.com/adrianklimek/ReplaceMe">ReplaceMe.js</a> is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a></p>
+            </section>
+
+            <footer id="footer">
+                <p>Made by <a href="https://github.com/adrianklimek">Adrian Klimek</a></p>
+            </footer>
+
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/htmlbars.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/javascript.min.js"></script>
+        <script src="js/replaceme.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+            var replace = new ReplaceMe({
+                hoverStop: true,
+                clickChange: true,
+                animation: 'rollIn animated',
+                separator: ', '
+            });
+        </script>
+    </body>
+</html>
