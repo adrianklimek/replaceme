@@ -10,7 +10,7 @@
 <p><i>Also, you can put other values in hidden span to show only first value in case something goes wrong or javascript is disabled.</i></p>
 <pre><code class="html">&lt;p&gt;I am &lt;span class=&quot;replace-me&quot;&gt;Designer&lt;span style=&quot;display:none&quot;&gt;,Developer,Photographer&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h3>3. Add <a href="https://github.com/adrianklimek/ReplaceMe/">replaceme.js</a> at the bottom of the document body and set up javascript</h3>
+<p>3. Add <a href="https://github.com/adrianklimek/ReplaceMe/">replaceme.js</a> at the bottom of the document body and set up javascript</p>
 <pre><code class="html">&lt;script src=&quot;replaceme.min.js&quot;&gt;&lt;/script&gt;&lt;script&gt;
     var replace = new ReplaceMe();
 &lt;/script&gt;</code></pre>
