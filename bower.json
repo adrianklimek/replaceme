@@ -1,7 +1,7 @@
 {
   "name": "ReplaceMe",
   "description": "Text rotating JavaScript component",
-  "main": "dist/replaceme.js",
+  "main": "dist/replaceme.min.js",
   "authors": [
     "Adrian Klimek"
   ],
