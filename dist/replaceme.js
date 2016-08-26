@@ -18,7 +18,6 @@
 
     function jqueryComponent() {
         if (typeof $ != 'undefined') {
-            console.log(1);
             $.fn.extend({
                 ReplaceMe: function(options){
                     return this.each(function(){
