@@ -1,5 +1,5 @@
 {
-  "name": "ReplaceMe",
+  "name": "replaceme",
   "description": "Text rotating JavaScript component",
   "main": "dist/replaceme.min.js",
   "authors": [
