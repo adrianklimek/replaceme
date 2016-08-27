@@ -1,6 +1,10 @@
 # ReplaceMe
 <p><a href="https://github.com/adrianklimek/ReplaceMe">ReplaceMe.js</a> is a lightweight JavaScript component for text rotating. No dependency needed, but it also works well with jQuery.</p>
 
+<h2>Bower</h2>
+<p>To install via Bower, simply do the following:</p>
+<pre><code>$ bower install replaceme --save</code></pre>
+
 <h2>Usage</h2>
 <p>1. Add <a href="https://daneden.github.io/animate.css/">animate.css</a> or other animations library to head of the document</p>
 
