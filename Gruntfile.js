@@ -22,9 +22,12 @@ module.exports = function (grunt) {
         },
         uglify: {
             my_target: {
-              files: {
-                'dist/replaceme.min.js': ['dist/replaceme.js']
-              }
+                options: {
+                    preserveComments: /(?:^!|@(?:license|preserve|cc_on))/
+                },
+                files: {
+                    'dist/replaceme.min.js': ['dist/replaceme.js']
+                }
             }
         },
         copy: {
