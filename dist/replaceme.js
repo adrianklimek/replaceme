@@ -1,7 +1,10 @@
 /*!
- * ReplaceMe.js 1.0.0 - Text Rotating Component in Pure JavaScript
- * Copyright 2016 Adrian Klimek
- * Released under the MIT license
+ *  replaceme.js - text rotating component in vanilla JavaScript
+ *  @version 1.1.0
+ *  @author Adrian Klimek
+ *  @link https://adrianklimek.github.io/replaceme/
+ *  @copyright Adrian Klimek 2016
+ *  @license MIT
  */
 (function(window, $){
     'use strict';
@@ -16,16 +19,13 @@
         return target;
     }
 
+    // Make jQuery component 
     function jqueryComponent() {
-        if (typeof $ != 'undefined') {
+        if (typeof $ == 'function') {
             $.fn.extend({
                 ReplaceMe: function(options){
                     return this.each(function(){
-                        if (!options) {
-                            options = {};
-                        }
-                        options.element = this;
-                        new ReplaceMe(options);
+                        new ReplaceMe(this, options);
                     });
                 }
             });
@@ -33,10 +33,9 @@
     }
 
     // Constructor
-    function ReplaceMe() {
+    function ReplaceMe(element, options) {
         // Defaults  
         var defaults = {
-            element: document.querySelector('.replace-me'),     // DOM element or query selector 
             animation: 'animated fadeIn',                       // String (animation class)
             speed: 2000,                                        // Integer
             separator: ',',                                     // String
@@ -50,11 +49,25 @@
         };
         
         // Extend defaults
-        if (typeof arguments[0] == 'object') {
-            this.options = extend(defaults, arguments[0]);
+        if (typeof options == 'object') {
+            this.options = extend(defaults, options);
         }
         else {
             this.options = defaults;
+        }
+
+        // Get element
+        if (typeof element == 'undefined'){
+            throw new Error('ReplaceMe [constructor]: "element" parameter is required');
+        }
+        else if (typeof element == 'object') {
+            this.element = element;
+        }
+        else if (typeof element == 'string') {
+            this.element = document.querySelector(element);
+        }
+        else {
+            throw new Error('ReplaceMe [constructor]: wrong "element" parameter');
         }
 
         this.init();
@@ -65,29 +78,16 @@
             this.options.onInit();
         }
 
-        this.getElements();
-        this.setVariables();
+        this.words = this.escapeHTML(this.element.innerHTML).split(this.options.separator);
+        this.count = this.words.length;
+        this.position = this.loopCount = 0;
+        this.running = false;
+
         this.bindAll();
 
         if (this.options.autoRun === true) {
             this.start();
         }
-    };
-
-    ReplaceMe.prototype.getElements = function() {
-        if (typeof this.options.element == 'string') {
-            this.element = document.querySelector(this.options.element);
-        }
-        else {
-            this.element = this.options.element;
-        }
-    };
-
-    ReplaceMe.prototype.setVariables = function() {
-        this.words = this.testWords(this.element.innerHTML).split(this.options.separator);
-        this.count = this.words.length;
-        this.position = this.loopCount = 0;
-        this.running = false;
     };
 
     ReplaceMe.prototype.bindAll = function() {
@@ -147,14 +147,15 @@
         this.element.innerHTML = '<span class="' + this.options.animation + '" style="display:inline-block;">' + word + '</span>';
     };
 
-    // If there is html tag inside words delete it
-    ReplaceMe.prototype.testWords = function(words) {
+    // If there is html tag inside string delete it
+    ReplaceMe.prototype.escapeHTML = function(string) {
         var reg = /<\/?\w+\s*[^>]*>/g;
-        if(reg.test(words) === true) { 
-            return words.replace(reg, '');
+        if(reg.test(string) === true) { 
+            return string.replace(reg, '');
         }
-        return words;
+        return string;
     };
+
     window.ReplaceMe = ReplaceMe;
     jqueryComponent();
 }(window, window.jQuery));
