@@ -16,7 +16,7 @@
 
 <p>3. Add <a href="https://github.com/adrianklimek/ReplaceMe/">replaceme.js</a> at the bottom of the document body and set up javascript</p>
 <pre><code class="html">&lt;script src=&quot;replaceme.min.js&quot;&gt;&lt;/script&gt;&lt;script&gt;
-    var replace = new ReplaceMe();
+    var replace = new ReplaceMe(document.querySelector('.replace-me'));
 &lt;/script&gt;</code></pre>
 
 <p>If you want to declare custom options: </p>
