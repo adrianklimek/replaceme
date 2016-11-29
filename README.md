@@ -22,8 +22,7 @@
 <p>If you want to declare custom options: </p>
 <pre><code class="html">&lt;script src=&quot;replaceme.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-var replace = new ReplaceMe({
-    element: document.querySelector('.replace-me'),     // DOM element or query selector 
+var replace = new ReplaceMe(document.querySelector('.replace-me'), {
     animation: 'animated fadeIn',                       // Animation class or classes
     speed: 2000,                                        // Delay between each phrase in miliseconds
     separator: ',',                                     // Phrases separator
