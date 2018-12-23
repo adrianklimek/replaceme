@@ -1,2 +1,2 @@
 # ReplaceMe.js
-Text rotating component in pure Javascript - https://github.com/adrianklimek/ReplaceMe
+Text rotator written in vanilla JS - https://github.com/adrianklimek/ReplaceMe
